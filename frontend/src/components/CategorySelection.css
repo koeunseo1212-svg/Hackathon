@@ -1,0 +1,157 @@
+.category-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.category-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  min-height: 80vh;
+  justify-items: center;
+}
+
+.left-section {
+  padding-top: 3rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.instruction {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.right-section {
+  padding-top: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem 0.8rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 80px;
+  width: 100%;
+}
+
+.category-btn:hover {
+  border-color: #000;
+  transform: translateY(-2px);
+}
+
+.category-btn.selected {
+  border-color: #000;
+  background-color: #f8f8f8;
+}
+
+.category-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.category-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+}
+
+.next-btn {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-btn:hover:not(:disabled) {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.next-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .category-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .main-title {
+    font-size: 1.8rem;
+  }
+  
+  .left-section,
+  .right-section {
+    max-width: 100%;
+  }
+  
+  .category-btn {
+    min-height: 70px;
+    padding: 1rem 0.6rem;
+  }
+  
+  .category-icon {
+    font-size: 1.3rem;
+  }
+  
+  .category-name {
+    font-size: 0.75rem;
+  }
+}
