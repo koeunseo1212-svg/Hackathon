@@ -1,0 +1,171 @@
+.content-prompt-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.prompt-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  min-height: 80vh;
+}
+
+.left-section {
+  padding-top: 4rem;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.right-section {
+  padding-top: 2rem;
+}
+
+.prompt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.option-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: white;
+  color: #000;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+  border-color: #000;
+}
+
+.option-btn.selected {
+  border-color: #000;
+  background-color: #000;
+  color: white;
+}
+
+.image-upload-area {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.image-upload-label {
+  display: block;
+  text-align: center;
+  color: #666;
+  cursor: pointer;
+  padding: 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.image-upload-label:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.generate-btn {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.generate-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .prompt-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .prompt-form {
+    gap: 1rem;
+  }
+  
+  .option-buttons {
+    gap: 0.3rem;
+  }
+  
+  .option-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

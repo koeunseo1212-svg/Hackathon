@@ -1,0 +1,128 @@
+.sns-channel-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.channel-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  min-height: 80vh;
+}
+
+.left-section {
+  padding-top: 4rem;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.right-section {
+  padding-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+.channel-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.channel-btn {
+  padding: 1.2rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: white;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 200px;
+  max-width: 230px;
+}
+
+.channel-btn:hover {
+  border-color: var(--channel-color);
+  transform: translateY(-2px);
+}
+
+.channel-btn.selected {
+  border-color: var(--channel-color);
+  background-color: var(--channel-color);
+  color: white;
+}
+
+.next-btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-btn:hover:not(:disabled) {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.next-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .channel-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  .channel-grid {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .channel-btn {
+    padding: 1rem 1.2rem;
+    font-size: 0.9rem;
+    min-width: 200px;
+    max-width: 230px;
+  }
+}
