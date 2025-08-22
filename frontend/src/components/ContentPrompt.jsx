@@ -197,13 +197,13 @@ function ContentPrompt() {
             AI 콘텐츠 생성하기 (무료 2회 남음)
           </button>
         </div>
-      </div>
 
-      {/* 하단 네비게이션 */}
-      <div className="navigation-footer">
-        <button className="prev-btn" onClick={handlePrevious}>
-          이전으로
-        </button>
+        {/* 네비게이션 버튼 */}
+        <div className="navigation-buttons">
+          <button className="prev-btn" onClick={handlePrevious}>
+            이전으로
+          </button>
+        </div>
       </div>
     </div>
   )

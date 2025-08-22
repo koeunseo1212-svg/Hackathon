@@ -286,14 +286,12 @@
   font-size: 1.2rem;
 }
 
-/* 하단 네비게이션 */
-.navigation-footer {
+/* 네비게이션 버튼 */
+.navigation-buttons {
   margin-top: 2rem;
   display: flex;
   justify-content: flex-start;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 12px;
 }
 
 .prev-btn {

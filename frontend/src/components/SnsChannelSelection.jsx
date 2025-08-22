@@ -89,22 +89,22 @@ function SnsChannelSelection() {
       <div className="progress-header">
         <div className="progress-step completed">
           <div className="step-icon">✓</div>
-          <span className="step-label">1단계</span>
+          <span className="step-label">카테고리 설정</span>
         </div>
         <div className="progress-line"></div>
         <div className="progress-step completed">
           <div className="step-icon">✓</div>
-          <span className="step-label">2단계</span>
+          <span className="step-label">가게 정보</span>
         </div>
         <div className="progress-line"></div>
         <div className="progress-step active">
           <div className="step-icon">3</div>
-          <span className="step-label">3단계</span>
+          <span className="step-label">SNS 선택</span>
         </div>
         <div className="progress-line"></div>
         <div className="progress-step">
           <div className="step-icon">4</div>
-          <span className="step-label">4단계</span>
+          <span className="step-label">콘텐츠 생성</span>
         </div>
       </div>
 
@@ -168,20 +168,20 @@ function SnsChannelSelection() {
             </label>
           </div>
         </div>
-      </div>
 
-      {/* 하단 네비게이션 */}
-      <div className="navigation-footer">
-        <button className="prev-btn" onClick={handlePrevious}>
-          이전으로
-        </button>
-        <button 
-          className="next-btn"
-          onClick={handleNext}
-          disabled={selectedChannels.length === 0}
-        >
-          다음 단계
-        </button>
+        {/* 네비게이션 버튼 */}
+        <div className="navigation-buttons">
+          <button className="prev-btn" onClick={handlePrevious}>
+            이전으로
+          </button>
+          <button 
+            className="next-btn"
+            onClick={handleNext}
+            disabled={selectedChannels.length === 0}
+          >
+            다음 단계
+          </button>
+        </div>
       </div>
     </div>
   )

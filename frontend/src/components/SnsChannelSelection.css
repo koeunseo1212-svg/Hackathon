@@ -64,9 +64,10 @@
 /* 메인 콘텐츠 */
 .main-content {
   flex: 1;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding: 3rem 2rem;
 }
 
 .content-header {
@@ -216,15 +217,12 @@
   color: #374151;
 }
 
-/* 하단 네비게이션 */
-.navigation-footer {
+/* 네비게이션 버튼 */
+.navigation-buttons {
   margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .prev-btn {
@@ -237,6 +235,12 @@
   font-weight: 500;
   cursor: pointer;
   min-width: 120px;
+  transition: all 0.2s ease;
+}
+
+.prev-btn:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
 }
 
 .next-btn {
@@ -248,12 +252,13 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
-  min-width: 120px;
+  transition: all 0.2s ease;
+  flex: 1; 
 }
 
-.next-btn:hover {
+.next-btn:hover:not(:disabled) {
   background: #6941c6;
+  transform: translateY(-2px);
 }
 
 .next-btn:disabled {
