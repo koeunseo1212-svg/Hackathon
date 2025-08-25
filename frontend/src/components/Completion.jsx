@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './Completion.css'
 
 function Completion() {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleShareToSns = () => {
     // SNS 공유 로직 구현

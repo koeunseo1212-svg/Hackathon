@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './SnsChannelSelection.css'
+import SummaryBar from './SummaryBar'
+import { useAppState } from './AppStateContext'
 
 function SnsChannelSelection() {
   const navigate = useNavigate()
+  const { state, actions } = useAppState()
   const [selectedChannels, setSelectedChannels] = useState([])
   const [additionalOptions, setAdditionalOptions] = useState({
     backgroundMusic: false,
     trendHashtags: false,
     localKeywords: false
   })
+
+  useEffect(() => {
+    if (state.sns) {
+      setSelectedChannels(state.sns.channels || [])
+      setAdditionalOptions(state.sns.options || additionalOptions)
+    }
+  }, [])
 
   const channels = [
     {
@@ -75,6 +85,7 @@ function SnsChannelSelection() {
 
   const handleNext = () => {
     if (selectedChannels.length > 0) {
+      actions.setSns({ channels: selectedChannels, options: additionalOptions })
       navigate('/content-prompt')
     }
   }
@@ -107,6 +118,16 @@ function SnsChannelSelection() {
           <span className="step-label">콘텐츠 생성</span>
         </div>
       </div>
+
+      <SummaryBar
+        category={state.category}
+        companyName={state.basicInfo?.companyName}
+        snsChannels={undefined}
+        promptText={undefined}
+        language={undefined}
+        onClickCategory={() => navigate('/basic-info')}
+        onClickBasic={() => navigate('/basic-info')}
+      />
 
       {/* 메인 콘텐츠 */}
       <div className="main-content">

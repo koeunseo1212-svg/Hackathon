@@ -1,14 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ContentPrompt.css'
+import SummaryBar from './SummaryBar'
+import { useAppState } from './AppStateContext'
 
 function ContentPrompt() {
   const navigate = useNavigate()
+  const { state, actions } = useAppState()
   const [formData, setFormData] = useState({
     contentType: 'general',
     tone: 'friendly',
     content: ''
   })
+
+  useEffect(() => {
+    if (state.prompt) {
+      setFormData(prev => ({ ...prev, ...state.prompt }))
+    }
+  }, [])
 
   const contentTypes = [
     {
@@ -89,6 +98,8 @@ function ContentPrompt() {
 
   const handleGenerate = () => {
     if (formData.content.trim().length >= 10) {
+      actions.setPrompt(formData)
+      actions.useGeneration()
       navigate('/preview')
     }
   }
@@ -124,6 +135,17 @@ function ContentPrompt() {
           <span className="step-label">콘텐츠 생성</span>
         </div>
       </div>
+
+      <SummaryBar
+        category={state.category}
+        companyName={state.basicInfo?.companyName}
+        snsChannels={state.sns?.channels}
+        promptText={undefined}
+        language={undefined}
+        onClickCategory={() => navigate('/basic-info')}
+        onClickBasic={() => navigate('/basic-info')}
+        onClickSns={() => navigate('/sns-channel')}
+      />
 
       {/* 메인 콘텐츠 */}
       <div className="main-content">

@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import { useAppState } from './AppStateContext';
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const { actions } = useAppState();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,6 +24,9 @@ function LoginPage() {
     e.preventDefault();
     // 로그인 로직 구현
     console.log('Login attempt:', formData);
+    // 임시: 로그인 성공 가정 후 다음 단계로 이동
+    actions.login({ email: formData.email });
+    navigate('/category');
   };
 
   return (
@@ -65,7 +71,7 @@ function LoginPage() {
               />
               로그인 상태 유지
             </label>
-            <Link to="/forgot-password" className="forgot-password">비밀번호를 잊으셨나요?</Link>
+            <button type="button" className="forgot-password" onClick={() => alert('비밀번호 찾기 기능은 준비 중입니다.')}>비밀번호를 잊으셨나요?</button>
           </div>
 
           <button type="submit" className="login-button">
@@ -78,11 +84,11 @@ function LoginPage() {
         </div>
 
         <div className="social-login">
-          <button className="social-button google">
+          <button className="social-button google" onClick={() => { actions.login({ provider: 'google' }); navigate('/category'); }}>
             <img src="/google-icon.png" alt="Google" />
             구글
           </button>
-          <button className="social-button kakao">
+          <button className="social-button kakao" onClick={() => { actions.login({ provider: 'kakao' }); navigate('/category'); }}>
             <img src="/kakao-icon.png" alt="Kakao" />
             카카오
           </button>

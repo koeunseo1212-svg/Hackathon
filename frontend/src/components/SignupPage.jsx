@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignupPage.css';
+import { useAppState } from './AppStateContext';
 
 function SignupPage() {
+  const navigate = useNavigate();
+  const { actions } = useAppState();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,6 +26,9 @@ function SignupPage() {
     e.preventDefault();
     // 회원가입 로직 구현
     console.log('Signup attempt:', formData);
+    // 임시: 회원가입 성공 가정 후 다음 단계로 이동
+    actions.login({ email: formData.email, name: formData.name });
+    navigate('/category');
   };
 
   return (
@@ -111,11 +117,11 @@ function SignupPage() {
         </div>
 
         <div className="social-signup">
-          <button className="social-button google">
+          <button className="social-button google" onClick={() => { actions.login({ provider: 'google' }); navigate('/category'); }}>
             <img src="/google-icon.png" alt="Google" />
             구글
           </button>
-          <button className="social-button kakao">
+          <button className="social-button kakao" onClick={() => { actions.login({ provider: 'kakao' }); navigate('/category'); }}>
             <img src="/kakao-icon.png" alt="Kakao" />
             카카오
           </button>
