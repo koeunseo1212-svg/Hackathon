@@ -55,7 +55,7 @@ function LandingPage() {
             <div className="info-card">
               <div className="card-icon">#</div>
               <h3 className="card-title">다중 플랫폼 최적화</h3>
-              <p className="card-desc">인스타그램, 네이버 블로그, 페이스북 등 각 플랫폼에 맞춰 최적화합니다.</p>
+              <p className="card-desc">인스타그램, 네이버 블로그 각 플랫폼에 맞춰 최적화합니다.</p>
             </div>
             <div className="info-card">
               <div className="card-icon">⏱️</div>
@@ -136,7 +136,7 @@ function LandingPage() {
               <div className="socials">🔗 🌐 📷 ▶️</div>
             </div>
           </div>
-          <div className="footer-bottom">© 2024 AI 홍보 서비스. All rights reserved.</div>
+          <div className="footer-bottom">© 2025 AI 홍보 서비스. All rights reserved.</div>
         </footer>
       </div>
     </div>
