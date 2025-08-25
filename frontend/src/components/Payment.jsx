@@ -93,6 +93,22 @@ function Payment() {
             >
               결제
             </button>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+              <button 
+                className="payment-submit-btn"
+                onClick={() => actions.addFeedback({ type: 'payment', status: 'success', method: paymentMethod })}
+                style={{ backgroundColor: '#10b981' }}
+              >
+                결제 성공 신고
+              </button>
+              <button 
+                className="payment-submit-btn"
+                onClick={() => actions.addFeedback({ type: 'payment', status: 'failure', method: paymentMethod })}
+                style={{ backgroundColor: '#ef4444' }}
+              >
+                결제 실패 신고
+              </button>
+            </div>
             <button 
               className="payment-submit-btn"
               onClick={handleBack}

@@ -9,7 +9,8 @@ const defaultState = {
   sns: { channels: [], options: { backgroundMusic: false, trendHashtags: false, localKeywords: false } },
   prompt: { contentType: 'general', tone: 'friendly', content: '' },
   language: '',
-  quotas: { freeGenerations: 2, freeRegenerations: 1 }
+  quotas: { freeGenerations: 2, freeRegenerations: 1 },
+  feedbacks: []
 }
 
 const AppStateContext = createContext(null)
@@ -57,6 +58,14 @@ export function AppStateProvider({ children }) {
     },
     useRegeneration() {
       setState(prev => ({ ...prev, quotas: { ...prev.quotas, freeRegenerations: Math.max(0, (prev.quotas?.freeRegenerations ?? 0) - 1) } }))
+    },
+    addFeedback(feedback) {
+      const entry = {
+        id: `${Date.now()}_${Math.random().toString(36).slice(2)}`,
+        timestamp: Date.now(),
+        ...feedback
+      }
+      setState(prev => ({ ...prev, feedbacks: [...(prev.feedbacks || []), entry] }))
     }
   }), [])
 
