@@ -25,9 +25,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우터 가져오기
 const authRoutes = require('./routes/auth');
+const promotionRoutes = require('./routes/promotion');
 
 // 라우터 등록
 app.use('/api/auth', authRoutes);
+app.use('/api/promotion', promotionRoutes);
 
 // 헬스 체크 엔드포인트
 app.get('/api/health', (req, res) => {

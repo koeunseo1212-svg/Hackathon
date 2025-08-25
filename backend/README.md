@@ -190,6 +190,235 @@ POST /api/ai/generate-code
 }
 ```
 
+### 프롬프트 파이프라인 API
+
+#### 1. 업종 분석
+```
+POST /api/promotion/analyze-industry
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "industry": "카페"
+}
+```
+
+#### 2. 가게 정보 분석
+```
+POST /api/promotion/analyze-store-info
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "storeName": "스타벅스 강남점",
+  "industry": "카페",
+  "address": "서울특별시 강남구 테헤란로 123",
+  "detailedAddress": "456빌딩 1층",
+  "phoneNumber": "02-1234-5678",
+  "operatingHours": "07:00-22:00",
+  "industryAnalysis": "업종 분석 결과"
+}
+```
+
+#### 3. SNS별 홍보글 생성
+```
+POST /api/promotion/generate-promotion
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "platform": "instagram",  // "instagram", "naver-blog", "facebook"
+  "storeAnalysis": "가게 분석 결과",
+  "industryAnalysis": "업종 분석 결과",
+  "contentType": "event-promotion",  // "product-intro", "event-promotion", "brand-story", "customer-review", "update-news", "tips-info"
+  "toneAndManner": "friendly",  // "friendly", "professional", "funny", "sophisticated", "warm", "energetic"
+  "promotionDetails": "신메뉴 출시 이벤트, 20% 할인 혜택",
+  "additionalInfo": "추가 정보"
+}
+```
+
+#### 4. 통합 파이프라인 (전체 과정)
+```
+POST /api/promotion/complete-pipeline
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "industry": "카페",
+  "storeName": "스타벅스 강남점",
+  "address": "서울특별시 강남구 테헤란로 123",
+  "detailedAddress": "456빌딩 1층",
+  "phoneNumber": "02-1234-5678",
+  "operatingHours": "07:00-22:00",
+  "platforms": ["instagram", "naver-blog", "facebook"],
+  "contentType": "event-promotion",
+  "toneAndManner": "energetic",
+  "promotionDetails": "신메뉴 출시 이벤트, 20% 할인 혜택",
+  "additionalInfo": "신메뉴 출시 예정, 친환경 포장재 사용"
+}
+```
+
+**응답:**
+```json
+{
+  "success": true,
+  "resultId": "64f8a1b2c3d4e5f6a7b8c9d0",
+  "pipeline": {
+    "industry": "카페",
+    "storeInfo": { ... },
+    "industryAnalysis": "...",
+    "storeAnalysis": "...",
+    "promotions": { ... },
+    "platforms": ["instagram", "naver-blog"]
+  },
+  "generatedAt": "2024-01-01T12:00:00.000Z"
+}
+```
+
+#### 5. 결과물 저장
+```
+POST /api/promotion/save-result
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "industry": "카페",
+  "storeName": "스타벅스 강남점",
+  "address": "서울특별시 강남구 테헤란로 123",
+  "detailedAddress": "456빌딩 1층",
+  "phoneNumber": "02-1234-5678",
+  "operatingHours": "07:00-22:00",
+  "platforms": ["instagram", "naver-blog"],
+  "contentType": "event-promotion",
+  "toneAndManner": "friendly",
+  "promotionDetails": "신메뉴 출시 이벤트, 20% 할인 혜택",
+  "additionalInfo": "신메뉴 출시 예정, 친환경 포장재 사용",
+  "generatedPromotions": {
+    "instagram": { ... },
+    "naver-blog": { ... }
+  },
+  "paymentInfo": {
+    "amount": 15000,
+    "currency": "KRW",
+    "paymentMethod": "card"
+  }
+}
+```
+
+#### 6. 결과물 조회
+```
+GET /api/promotion/result/:resultId
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**응답:**
+```json
+{
+  "success": true,
+  "result": {
+    "_id": "64f8a1b2c3d4e5f6a7b8c9d0",
+    "userId": "64f8a1b2c3d4e5f6a7b8c9d1",
+    "industry": "카페",
+    "storeInfo": {
+      "storeName": "스타벅스 강남점",
+      "address": "서울특별시 강남구 테헤란로 123",
+      "detailedAddress": "456빌딩 1층",
+      "phoneNumber": "02-1234-5678",
+      "operatingHours": "07:00-22:00"
+    },
+    "platforms": ["instagram", "naver-blog"],
+    "contentType": "event-promotion",
+    "toneAndManner": "friendly",
+    "promotionDetails": "신메뉴 출시 이벤트, 20% 할인 혜택",
+    "additionalInfo": "신메뉴 출시 예정, 친환경 포장재 사용",
+    "generatedPromotions": {
+      "instagram": {
+        "title": "스타벅스 강남점 신메뉴 출시! 🎉",
+        "content": "안녕하세요! 스타벅스 강남점에서 새로운 메뉴가 출시되었습니다...",
+        "hashtags": "#스타벅스 #강남점 #신메뉴 #카페 #커피",
+        "tips": "인스타그램에서 더 많은 팔로워를 얻으려면..."
+      },
+      "naver-blog": {
+        "title": "[스타벅스 강남점] 신메뉴 출시 이벤트 상세 후기",
+        "content": "안녕하세요! 오늘은 스타벅스 강남점에서 진행 중인 신메뉴 출시 이벤트에 대해 자세히 알아보겠습니다...",
+        "hashtags": "#스타벅스 #강남점 #신메뉴 #카페 #커피 #이벤트",
+        "tips": "네이버 블로그에서 더 많은 방문자를 유도하려면..."
+      }
+    },
+    "paymentInfo": {
+      "amount": 15000,
+      "currency": "KRW",
+      "paymentMethod": "card",
+      "paidAt": "2024-01-01T12:00:00.000Z"
+    },
+    "status": "completed",
+    "createdAt": "2024-01-01T12:00:00.000Z",
+    "updatedAt": "2024-01-01T12:00:00.000Z"
+  }
+}
+```
+
+#### 7. 사용자의 모든 결과물 조회
+```
+GET /api/promotion/my-results
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**응답:**
+```json
+{
+  "success": true,
+  "results": [
+    {
+      "_id": "64f8a1b2c3d4e5f6a7b8c9d0",
+      "industry": "카페",
+      "storeInfo": {
+        "storeName": "스타벅스 강남점"
+      },
+      "platforms": ["instagram", "naver-blog"],
+      "contentType": "event-promotion",
+      "status": "completed",
+      "createdAt": "2024-01-01T12:00:00.000Z"
+    }
+  ]
+}
+```
+
+#### 8. 결과물 다운로드
+```
+GET /api/promotion/download/:resultId
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**응답:**
+```json
+{
+  "success": true,
+  "message": "다운로드 준비 중입니다.",
+  "downloadUrl": "/api/promotion/download-file/64f8a1b2c3d4e5f6a7b8c9d0"
+}
+```
+
+## 테스트 방법
+
+```bash
+# 프롬프트 파이프라인 테스트
+node test-promotion.js
+
+# 결과물 API 테스트
+node test-result.js
+```
+
 ## 사용 예시
 
 ### cURL을 사용한 테스트

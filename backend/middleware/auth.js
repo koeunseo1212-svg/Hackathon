@@ -192,8 +192,6 @@ const validateRegistration = (req, res, next) => {
 module.exports = {
   generateToken,
   verifyToken,
-  hashPassword,
-  comparePassword,
   blacklistToken,
   isTokenBlacklisted,
   authenticateToken,

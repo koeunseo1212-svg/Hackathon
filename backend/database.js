@@ -6,14 +6,12 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-api
 // MongoDB 연결
 const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGODB_URI);
     console.log('✅ MongoDB 데이터베이스에 연결되었습니다.');
   } catch (error) {
     console.error('MongoDB 연결 오류:', error.message);
-    process.exit(1);
+    console.log('⚠️ MongoDB가 실행되지 않았습니다. 서버는 계속 실행되지만 데이터베이스 기능은 사용할 수 없습니다.');
+    // process.exit(1); // 서버를 종료하지 않고 계속 실행
   }
 };
 
