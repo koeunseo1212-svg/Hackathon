@@ -87,19 +87,25 @@ function BasicInfoForm() {
 
   return (
     <div className="basic-info-page">
-      <div className="header">
-        <div className="header-left">
-          <button className="back-button" onClick={() => navigate(-1)}>
-            <span>←</span> 뒤로가기
-          </button>
+      <div className="progress-header">
+        <div className="progress-step completed">
+          <div className="step-icon">✓</div>
+          <span className="step-label">카테고리 설정</span>
         </div>
-        <div className="header-right">
-          <div className="progress-steps">
-            <span className="step">1단계</span>
-            <span className="step active">2단계</span>
-            <span className="step">3단계</span>
-            <span className="step">4단계</span>
-          </div>
+        <div className="progress-line"></div>
+        <div className="progress-step active">
+          <div className="step-icon">2</div>
+          <span className="step-label">가게 정보</span>
+        </div>
+        <div className="progress-line"></div>
+        <div className="progress-step">
+          <div className="step-icon">3</div>
+          <span className="step-label">SNS 선택</span>
+        </div>
+        <div className="progress-line"></div>
+        <div className="progress-step">
+          <div className="step-icon">4</div>
+          <span className="step-label">콘텐츠 생성</span>
         </div>
       </div>
 
