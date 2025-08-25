@@ -442,10 +442,32 @@ SNS 옵션:
 - 지역 키워드: ${sns.options.localKeywords ? '포함' : '미포함'}
 
 ${platform} 특성에 맞는 홍보글을 작성해주세요.
+
+다음 JSON 형식으로 응답해주세요:
+{
+  "title": "제목",
+  "content": "본문 내용",
+  "hashtags": "해시태그들",
+  "tips": "추가 팁"
+}
 `;
 
       const promotionResult = await model.generateContent(promotionPrompt);
-      promotions[platform] = promotionResult.response.text();
+      const promotionText = promotionResult.response.text();
+      
+      // JSON 파싱 시도
+      try {
+        const promotionJson = JSON.parse(promotionText);
+        promotions[platform] = promotionJson;
+      } catch (e) {
+        // JSON 파싱 실패 시 텍스트 그대로 저장
+        promotions[platform] = {
+          title: `${platform} 홍보글`,
+          content: promotionText,
+          hashtags: "",
+          tips: ""
+        };
+      }
     }
 
     // 결과물을 데이터베이스에 저장

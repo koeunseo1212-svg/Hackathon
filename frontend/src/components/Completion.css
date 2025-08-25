@@ -1,19 +1,21 @@
+/* Completion.css */
+
 .completion-page {
   min-height: 100vh;
-  width: 100%;
-  background-color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 .completion-container {
-  max-width: 600px;
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 .completion-content {
@@ -21,47 +23,56 @@
 }
 
 .main-title {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 16px;
 }
 
 .completion-message {
-  font-size: 1.3rem;
-  color: #666;
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-bottom: 32px;
 }
 
 .action-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 24px;
 }
 
-.share-btn {
-  padding: 1rem 2rem;
-  border: 1px solid #000;
+.share-btn, .save-btn {
+  padding: 12px 24px;
+  border: none;
   border-radius: 8px;
-  background-color: white;
-  color: #000;
-  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 150px;
+}
+
+.share-btn {
+  background: #3b82f6;
+  color: white;
 }
 
 .share-btn:hover {
-  background-color: #f8f8f8;
-  transform: translateY(-2px);
+  background: #2563eb;
 }
 
 .save-btn {
-  padding: 1rem 2rem;
-  background-color: #000;
+  background: #10b981;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #059669;
+}
+
+.create-new-btn {
+  width: 100%;
+  padding: 16px;
+  background: #0f172a;
   color: white;
   border: none;
   border-radius: 8px;
@@ -69,47 +80,167 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 150px;
-}
-
-.save-btn:hover {
-  background-color: #333;
-  transform: translateY(-2px);
-}
-
-.create-new-btn {
-  padding: 0.8rem 1.5rem;
-  background-color: #f0f0f0;
-  color: #666;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .create-new-btn:hover {
-  background-color: #e0e0e0;
-  color: #000;
+  background: #1e293b;
+}
+
+/* 로딩 컨테이너 */
+.loading-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e3e3e3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 최종 결과물 컨테이너 */
+.final-result-container {
+  text-align: left;
+  margin: 32px 0;
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.result-header h2 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1.8rem;
+}
+
+.result-subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* 플랫폼별 결과 */
+.platform-result {
+  margin-bottom: 32px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.platform-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 20px;
+}
+
+.platform-title h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.content-result {
+  padding: 20px;
+}
+
+.content-block {
+  margin-bottom: 20px;
+}
+
+.content-block h4 {
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.content-text {
+  position: relative;
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 12px;
+  border-left: 4px solid #007bff;
+}
+
+.content-text p {
+  margin: 0;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-wrap;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: #0056b3;
+}
+
+/* 해시태그와 팁 스타일 */
+.content-block:nth-child(3) .content-text {
+  border-left-color: #2196f3;
+  background: #e3f2fd;
+}
+
+.content-block:nth-child(3) .content-text p {
+  color: #007bff;
+  font-weight: 500;
+}
+
+.content-block:nth-child(4) .content-text {
+  border-left-color: #ffc107;
+  background: #fff3cd;
+}
+
+.content-block:nth-child(4) .content-text p {
+  color: #856404;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
-  .main-title {
-    font-size: 2.5rem;
+  .completion-container {
+    padding: 20px;
   }
   
-  .completion-message {
-    font-size: 1.1rem;
+  .main-title {
+    font-size: 2rem;
   }
   
   .action-buttons {
     flex-direction: column;
-    align-items: center;
   }
   
-  .share-btn,
-  .save-btn {
-    min-width: 200px;
+  .final-result-container {
+    padding: 16px;
   }
 }

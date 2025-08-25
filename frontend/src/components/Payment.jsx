@@ -14,9 +14,37 @@ function Payment() {
     setPaymentMethod(method)
   }
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     if (paymentMethod) {
-      navigate('/completion')
+      try {
+        // 결제 시뮬레이션 - 실제로는 결제 API 호출
+        const response = await fetch('http://localhost:5000/api/promotion/complete-pipeline', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({
+            category: state.category,
+            basicInfo: state.basicInfo,
+            sns: state.sns,
+            prompt: state.prompt,
+            language: state.language || 'ko'
+          })
+        })
+
+        const data = await response.json()
+        
+        if (data.success) {
+          // 결제 완료 후 결과물 페이지로 이동
+          navigate(`/completion?resultId=${data.resultId}`)
+        } else {
+          alert('결제 처리 중 오류가 발생했습니다.')
+        }
+      } catch (error) {
+        console.error('결제 오류:', error)
+        alert('결제 처리 중 오류가 발생했습니다.')
+      }
     }
   }
 
