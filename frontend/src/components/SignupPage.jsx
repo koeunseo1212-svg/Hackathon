@@ -28,7 +28,7 @@ function SignupPage() {
     console.log('Signup attempt:', formData);
     // 임시: 회원가입 성공 가정 후 다음 단계로 이동
     actions.login({ email: formData.email, name: formData.name });
-    navigate('/category');
+    navigate('/login', { state: { email: formData.email } });
   };
 
   return (

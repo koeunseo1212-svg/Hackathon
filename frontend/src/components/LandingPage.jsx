@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import './LandingPage.css'
-
+import { useAppState } from './AppStateContext'
 function LandingPage() {
   const navigate = useNavigate()
+  const { state, actions } = useAppState()
 
   const handleStart = () => {
-    // 로그인이 필요한 서비스이므로 로그인 페이지로 이동
-    navigate('/login')
+    if (state?.auth?.isAuthenticated) {
+      navigate('/category')  // 로그인 상태면 다음 단계로
+    } else {
+      navigate('/login')     // 비로그인 상태면 로그인으로
+    }
   }
 
   const handleLearnMore = () => {
@@ -16,7 +20,6 @@ function LandingPage() {
 
   return (
     <div className="landing-page">
-      {/* 상단 글로벌 헤더로 대체됨 */}
 
       <div className="landing-content">
         <div className="hero-section">

@@ -5,7 +5,7 @@ import { useAppState } from './AppStateContext';
 
 function LoginPage() {
   const navigate = useNavigate();
-  const { actions } = useAppState();
+  const { state, actions } = useAppState();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,8 +26,16 @@ function LoginPage() {
     console.log('Login attempt:', formData);
     // 임시: 로그인 성공 가정 후 다음 단계로 이동
     actions.login({ email: formData.email });
-    navigate('/category');
+    navigate('/');
   };
+
+  const handleStart = () => {
+    if (state?.auth?.isAuthenticated) {
+      navigate('/category')  // 로그인 상태면 다음 단계로
+    } else {
+      navigate('/login')     // 비로그인 상태면 로그인으로
+    }
+  }
 
   return (
     <div className="login-page">
