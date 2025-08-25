@@ -35,34 +35,6 @@ function SnsChannelSelection() {
       icon: '📷',
       description: '시각적 임팩트가 강한 SNS',
       features: ['해시태그 최적화', '이미지 중심', '스토리 활용']
-    },
-    {
-      id: 'facebook',
-      name: '페이스북',
-      icon: 'f',
-      description: '다양한 연령층에게 어필',
-      features: ['공유 확산', '이벤트 홍보', '커뮤니티 구축']
-    },
-    {
-      id: 'youtube',
-      name: '유튜브',
-      icon: '▶️',
-      description: '동영상 콘텐츠 및 쇼츠',
-      features: ['영상 스크립트', '썸네일 제안', '쇼츠 아이디어']
-    },
-    {
-      id: 'kakao-story',
-      name: '카카오스토리',
-      icon: '💬',
-      description: '지역 커뮤니티 중심',
-      features: ['지역 타겟팅', '간편 공유', '친구 추천']
-    },
-    {
-      id: 'tiktok',
-      name: '틱톡',
-      icon: '🎵',
-      description: '젊은 층 타겟 숏폼',
-      features: ['트렌드 활용', '챌린지 제안', '음악 추천']
     }
   ]
 
