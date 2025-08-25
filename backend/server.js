@@ -6,6 +6,10 @@ require('dotenv').config();
 
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
+// 데이터베이스 초기화
+const connectDB = require('./database');
+connectDB();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -19,6 +23,12 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// 라우터 가져오기
+const authRoutes = require('./routes/auth');
+
+// 라우터 등록
+app.use('/api/auth', authRoutes);
+
 // 헬스 체크 엔드포인트
 app.get('/api/health', (req, res) => {
   res.json({
@@ -28,8 +38,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// AI 채팅 엔드포인트
-app.post('/api/ai/chat', async (req, res) => {
+// 인증 미들웨어 가져오기
+const { authenticateToken } = require('./middleware/auth');
+
+// AI 채팅 엔드포인트 (인증 필요)
+app.post('/api/ai/chat', authenticateToken, async (req, res) => {
   try {
     const { message, systemPrompt = "당신은 도움이 되는 AI 어시스턴트입니다." } = req.body;
 
@@ -70,8 +83,8 @@ app.post('/api/ai/chat', async (req, res) => {
   }
 });
 
-// 콘텐츠 생성 엔드포인트
-app.post('/api/ai/generate', async (req, res) => {
+// 콘텐츠 생성 엔드포인트 (인증 필요)
+app.post('/api/ai/generate', authenticateToken, async (req, res) => {
   try {
     const { prompt, type = 'text' } = req.body;
 
@@ -118,8 +131,8 @@ app.post('/api/ai/generate', async (req, res) => {
   }
 });
 
-// 텍스트 분석 엔드포인트
-app.post('/api/ai/analyze', async (req, res) => {
+// 텍스트 분석 엔드포인트 (인증 필요)
+app.post('/api/ai/analyze', authenticateToken, async (req, res) => {
   try {
     const { text, analysis_type = 'sentiment' } = req.body;
 
@@ -170,8 +183,8 @@ app.post('/api/ai/analyze', async (req, res) => {
   }
 });
 
-// 코드 생성 엔드포인트
-app.post('/api/ai/generate-code', async (req, res) => {
+// 코드 생성 엔드포인트 (인증 필요)
+app.post('/api/ai/generate-code', authenticateToken, async (req, res) => {
   try {
     const { description, language = 'javascript' } = req.body;
 

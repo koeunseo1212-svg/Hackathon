@@ -18,6 +18,7 @@ cp env.example .env
 `.env` 파일에서 다음을 설정하세요:
 ```
 GEMINI_API_KEY=your_actual_gemini_api_key_here
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
 ```
 
 ### 3. 서버 실행
@@ -33,15 +34,101 @@ npm start
 
 ## API 엔드포인트
 
-### 1. 헬스 체크
+### 인증 API
+
+#### 1. 회원가입
+```
+POST /api/auth/register
+```
+
+**요청 본문:**
+```json
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "Password123!"
+}
+```
+
+**응답:**
+```json
+{
+  "success": true,
+  "message": "회원가입이 완료되었습니다.",
+  "user": {
+    "id": 1,
+    "username": "testuser",
+    "email": "test@example.com",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+#### 2. 로그인
+```
+POST /api/auth/login
+```
+
+**요청 본문:**
+```json
+{
+  "username": "testuser",
+  "password": "Password123!"
+}
+```
+
+#### 3. 로그아웃
+```
+POST /api/auth/logout
+```
+**헤더:** `Authorization: Bearer <token>`
+
+#### 4. 프로필 조회
+```
+GET /api/auth/profile
+```
+**헤더:** `Authorization: Bearer <token>`
+
+#### 5. 프로필 업데이트
+```
+PUT /api/auth/profile
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "email": "newemail@example.com"
+}
+```
+
+#### 6. 비밀번호 변경
+```
+PUT /api/auth/change-password
+```
+**헤더:** `Authorization: Bearer <token>`
+
+**요청 본문:**
+```json
+{
+  "currentPassword": "Password123!",
+  "newPassword": "NewPassword456!"
+}
+```
+
+### AI API (인증 필요)
+
+#### 1. 헬스 체크
 ```
 GET /api/health
 ```
 
-### 2. AI 채팅
+#### 2. AI 채팅
 ```
 POST /api/ai/chat
 ```
+**헤더:** `Authorization: Bearer <token>`
 
 **요청 본문:**
 ```json
@@ -61,10 +148,11 @@ POST /api/ai/chat
 }
 ```
 
-### 3. 콘텐츠 생성
+#### 3. 콘텐츠 생성
 ```
 POST /api/ai/generate
 ```
+**헤더:** `Authorization: Bearer <token>`
 
 **요청 본문:**
 ```json
@@ -74,10 +162,11 @@ POST /api/ai/generate
 }
 ```
 
-### 4. 텍스트 분석
+#### 4. 텍스트 분석
 ```
 POST /api/ai/analyze
 ```
+**헤더:** `Authorization: Bearer <token>`
 
 **요청 본문:**
 ```json
@@ -87,10 +176,11 @@ POST /api/ai/analyze
 }
 ```
 
-### 5. 코드 생성
+#### 5. 코드 생성
 ```
 POST /api/ai/generate-code
 ```
+**헤더:** `Authorization: Bearer <token>`
 
 **요청 본문:**
 ```json
