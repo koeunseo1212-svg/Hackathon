@@ -296,6 +296,10 @@
   text-align: center;
   padding: 3rem 1.5rem;
   margin-top: 3rem;
+  /* full-bleed */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .cta-title {
@@ -316,7 +320,15 @@
   cursor: pointer;
 }
 
-.site-footer { background: #0f172a; color: #94a3b8; padding: 2.5rem 2rem; }
+.site-footer { 
+  background: #0f172a; 
+  color: #94a3b8; 
+  padding: 2.5rem 2rem; 
+  /* full-bleed */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
 .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
 .footer-logo { color: #e2e8f0; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.5rem; }
 .footer-title { color: #e2e8f0; font-weight: 700; margin-bottom: 0.5rem; }
