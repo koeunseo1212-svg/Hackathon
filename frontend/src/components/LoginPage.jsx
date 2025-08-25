@@ -79,20 +79,8 @@ function LoginPage() {
           </button>
         </form>
 
-        <div className="divider">
-          <span>또는</span>
-        </div>
 
-        <div className="social-login">
-          <button className="social-button google" onClick={() => { actions.login({ provider: 'google' }); navigate('/category'); }}>
-            <img src="/google-icon.png" alt="Google" />
-            구글
-          </button>
-          <button className="social-button kakao" onClick={() => { actions.login({ provider: 'kakao' }); navigate('/category'); }}>
-            <img src="/kakao-icon.png" alt="Kakao" />
-            카카오
-          </button>
-        </div>
+        
       </div>
     </div>
   );
