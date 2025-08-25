@@ -19,9 +19,9 @@ function LandingPage() {
       <nav className="navbar">
         <div className="nav-logo">AI 홍보 서비스</div>
         <div className="nav-links">
-          <a href="#" className="nav-link">서비스 특징</a>
-          <a href="#" className="nav-link">이용 방법</a>
-          <a href="#" className="nav-link">오늘안내</a>
+          <a href="#features" className="nav-link">서비스 특징</a>
+          <a href="#howto" className="nav-link">이용 방법</a>
+          <a href="#cta" className="nav-link">오늘안내</a>
         </div>
         <div className="nav-auth">
           <button className="login-btn" onClick={() => navigate('/login')}>로그인</button>
@@ -51,7 +51,7 @@ function LandingPage() {
           </div>
         </div>
         {/* 왜 AI 홍보 서비스를 선택해야 할까요? */}
-        <section className="why-section">
+        <section id="features" className="why-section">
           <h2 className="section-heading">왜 AI 홍보 서비스를 선택해야 할까요?</h2>
           <p className="section-subheading">전문 마케터 수준의 콘텐츠를 누구나 쉽게 만들 수 있습니다</p>
           <div className="cards-grid">
@@ -89,7 +89,7 @@ function LandingPage() {
         </section>
 
         {/* 간단한 3단계로 완성 */}
-        <section className="steps-section">
+        <section id="howto" className="steps-section">
           <h2 className="section-heading">간단한 3단계로 완성</h2>
           <p className="section-subheading">복잡한 설정 없이 누구나 쉽게 사용할 수 있습니다</p>
           <div className="steps-grid">
@@ -115,7 +115,7 @@ function LandingPage() {
         </section>
 
         {/* CTA 배너 + 푸터 */}
-        <section className="cta-banner">
+        <section id="cta" className="cta-banner">
           <h2 className="cta-title">지금 시작해서 첫 번째 홍보 콘텐츠를 만들어보세요</h2>
           <p className="cta-subtitle">무료 체험으로 AI 홍보 서비스의 효과를 직접 경험해보세요</p>
           <button className="cta-button" onClick={handleStart}>무료로 시작하기 →</button>
