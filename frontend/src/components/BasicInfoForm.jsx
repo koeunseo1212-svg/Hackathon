@@ -231,7 +231,7 @@ function BasicInfoForm() {
               <button 
                 type="button" 
                 className="prev-btn"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate('/category')}
               >
                 이전으로
               </button>

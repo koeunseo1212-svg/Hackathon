@@ -6,19 +6,7 @@
   background: linear-gradient(180deg, #f5f7ff 0%, #ffffff 100%);
 }
 
-.navbar {
-  width: 100%;
-  height: 70px;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
+/* 기존 LandingPage 내부 고정 네비는 글로벌 헤더로 대체됨 */
 
 /* 부드러운 스크롤과 고정 네비게이션 보정 */
 html {

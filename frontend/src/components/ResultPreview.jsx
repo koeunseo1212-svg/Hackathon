@@ -1,124 +1,55 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ResultPreview.css'
-import SummaryBar from './SummaryBar'
 import { useAppState } from './AppStateContext'
-import GeneratedContent from './GeneratedContent'
 
 function ResultPreview() {
   const navigate = useNavigate()
-  const { state, actions } = useAppState()
-  const [selectedLanguage, setSelectedLanguage] = useState(state.language || '')
-  const [freeRegenerations, setFreeRegenerations] = useState(state.quotas?.freeRegenerations ?? 1)
-
-  const languages = ['영어', '중국어', '일본어']
-
-  const handleLanguageSelect = (language) => {
-    setSelectedLanguage(prev => (prev === language ? '' : language));
-  };
-
-  const handleRegenerate = () => {
-    if (freeRegenerations > 0) {
-      setFreeRegenerations(prev => prev - 1)
-      actions.useRegeneration()
-    }
-  }
+  const { state } = useAppState()
 
   const handleEdit = () => {
     navigate('/content-prompt')
   }
 
   const handlePayment = () => {
-    actions.setLanguage(selectedLanguage)
     navigate('/payment')
   }
 
   return (
-    <div className="result-preview-page">
-      <SummaryBar
-        category={state.category}
-        companyName={state.basicInfo?.companyName}
-        snsChannels={state.sns?.channels}
-        promptText={state.prompt?.content}
-        language={state.language}
-        onClickCategory={() => navigate('/basic-info')}
-        onClickBasic={() => navigate('/basic-info')}
-        onClickSns={() => navigate('/sns-channel')}
-        onClickPrompt={() => navigate('/content-prompt')}
-        onClickLanguage={() => {}}
-      />
-      <div className="preview-container">
-        <div className="left-section">
-          <h1 className="main-title">결과 미리보기</h1>
-          
-          <div className="language-section">
-            <p className="language-question">다국어 버전이 필요하신가요? (선택)</p>
-            <div className="language-buttons">
-  <button
-    className={`language-btn ${selectedLanguage === '' ? 'selected' : ''}`}
-    onClick={() => setSelectedLanguage('')}
-  >
-    선택 안함
-  </button>
+    <div className="result-preview-hero">
+      <div className="hero-inner">
+        <h1 className="preview-title">콘텐츠 미리보기</h1>
+        <p className="preview-subtitle">입력하신 정보를 바탕으로 생성될 콘텐츠의 예시입니다</p>
 
-  {languages.map(language => (
-    <button
-      key={language}
-      className={`language-btn ${selectedLanguage === language ? 'selected' : ''}`}
-      onClick={() => handleLanguageSelect(language)}
-    >
-      {language}
-    </button>
-  ))}
-</div>
-          </div>
+        <div className="info-pill">
+          <span className="info-dot">i</span>
+          실제 생성 시 더욱 정교하고 개성 있는 콘텐츠가 만들어집니다
+        </div>
 
-          <div className="action-buttons">
-            <button 
-              className="regenerate-btn"
-              onClick={handleRegenerate}
-              disabled={freeRegenerations === 0}
-            >
-              다시 생성하기({freeRegenerations}회 무료)
-            </button>
-            <button className="edit-btn" onClick={handleEdit}>
-              수정하기
-            </button>
+        <div className="preview-callout">
+          <h3 className="callout-title">미리보기가 마음에 드시나요?</h3>
+          <p className="callout-desc">실제 생성 시에는 더욱 정교하고 개성 있는 콘텐츠를 받아보실 수 있습니다.</p>
+          <div className="callout-actions">
+            <button className="btn-secondary" onClick={handleEdit}>← 수정하러 가기</button>
+            <button className="btn-primary" onClick={handlePayment}>실제 콘텐츠 생성하기</button>
           </div>
         </div>
-        
-        <div className="right-section">
-          <div className="preview-cards">
-            <div className="preview-card instagram">
-              <h3 className="card-title">인스타</h3>
-              <p className="card-subtitle">미리보기 이미지</p>
-              <div className="preview-content">
-                <div className="image-placeholder">
-                  <span>이미지 미리보기</span>
-                </div>
-                <div className="text-content">
-                  <GeneratedContent type="instagram" state={state} language={selectedLanguage} />
-                </div>
-              </div>
-            </div>
 
-            <div className="preview-card naver-blog">
-              <h3 className="card-title">네이버 블로그</h3>
-              <p className="card-subtitle">본문 + 가게 주소 링크</p>
-              <div className="preview-content">
-                <div className="image-placeholder">
-                  <span>본문 미리보기</span>
-                </div>
-                <div className="text-content">
-                  <GeneratedContent type="naver-blog" state={state} language={selectedLanguage} />
-                </div>
-              </div>
-            </div>
+        <div className="benefits-grid">
+          <div className="benefit-card">
+            <div className="benefit-icon">✨</div>
+            <h4 className="benefit-title">개성 있는 콘텐츠</h4>
+            <p className="benefit-desc">가게만의 특색이 담긴 독창적인 콘텐츠를 생성합니다</p>
           </div>
-
-          <button className="payment-btn" onClick={handlePayment}>
-            결제 진행
-          </button>
+          <div className="benefit-card">
+            <div className="benefit-icon">📱</div>
+            <h4 className="benefit-title">플랫폼 최적화</h4>
+            <p className="benefit-desc">각 SNS 플랫폼 특성에 맞게 최적화된 형태로 제작됩니다</p>
+          </div>
+          <div className="benefit-card">
+            <div className="benefit-icon">✏️</div>
+            <h4 className="benefit-title">자유로운 편집</h4>
+            <p className="benefit-desc">생성된 후에도 언제든 수정하고 개선할 수 있습니다</p>
+          </div>
         </div>
       </div>
     </div>

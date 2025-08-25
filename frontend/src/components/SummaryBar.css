@@ -3,7 +3,8 @@
   border: 1px solid #e5e7eb;
   padding: 10px 14px;
   border-radius: 8px;
-  margin: 12px 16px;
+  max-width: 1100px;
+  margin: 12px auto;
   display: flex;
   flex-wrap: wrap;
   gap: 12px 16px;

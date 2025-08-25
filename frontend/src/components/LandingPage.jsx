@@ -16,18 +16,7 @@ function LandingPage() {
 
   return (
     <div className="landing-page">
-      <nav className="navbar">
-        <div className="nav-logo">AI 홍보 서비스</div>
-        <div className="nav-links">
-          <a href="#features" className="nav-link">서비스 특징</a>
-          <a href="#howto" className="nav-link">이용 방법</a>
-          <a href="#cta" className="nav-link">오늘안내</a>
-        </div>
-        <div className="nav-auth">
-          <button className="login-btn" onClick={() => navigate('/login')}>로그인</button>
-          <button className="signup-btn" onClick={() => navigate('/signup')}>회원가입</button>
-        </div>
-      </nav>
+      {/* 상단 글로벌 헤더로 대체됨 */}
 
       <div className="landing-content">
         <div className="hero-section">
