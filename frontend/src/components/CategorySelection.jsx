@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import { useAppState } from './AppStateContext'
 import { useState } from 'react'
 import './CategorySelection.css'
 
 function CategorySelection() {
   const navigate = useNavigate()
+  const { state, actions } = useAppState()
   const [selectedCategory, setSelectedCategory] = useState(null)
 
   const categories = [
@@ -22,7 +24,7 @@ function CategorySelection() {
     {
       id: 'retail',
       name: '소매업',
-      icon: '�',
+      icon: '🛍️',
       description: '의류, 잡화, 편의점 등'
     },
     {
@@ -34,7 +36,7 @@ function CategorySelection() {
     {
       id: 'education',
       name: '교육/학원',
-      icon: '�',
+      icon: '🎓',
       description: '학원, 교실, 온라인 강의 등'
     },
     {
@@ -52,7 +54,7 @@ function CategorySelection() {
     {
       id: 'accommodation',
       name: '숙박업',
-      icon: '�',
+      icon: '🏨',
       description: '호텔, 펜션, 게스트하우스 등'
     },
     {
@@ -69,7 +71,8 @@ function CategorySelection() {
 
   const handleNext = () => {
     if (selectedCategory) {
-      navigate('/basic-info', { state: { category: selectedCategory } })
+      actions.setCategory(selectedCategory)
+      navigate('/basic-info')
     }
   }
 

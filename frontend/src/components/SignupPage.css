@@ -1,0 +1,225 @@
+.signup-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.signup-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.header-section {
+  margin-bottom: 2rem;
+}
+
+.service-logo {
+  color: #1a73e8;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ai-text {
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+.signup-title {
+  font-size: 1.75rem;
+  color: #1f1f1f;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.login-link-text {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.login-link {
+  color: #1a73e8;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.login-link:hover {
+  color: #1557b0;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+  background-color: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1a73e8;
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+.terms-checkbox {
+  margin: 1rem 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.signup-button:hover {
+  background-color: #1557b0;
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  background-color: white;
+  padding: 0 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.social-signup {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: white;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.social-button.google:hover {
+  background-color: #f8f9fa;
+  border-color: #dadce0;
+}
+
+.social-button.kakao {
+  background-color: #FEE500;
+  border-color: #FEE500;
+}
+
+.social-button.kakao:hover {
+  background-color: #FDD835;
+  border-color: #FDD835;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .signup-title {
+    font-size: 1.5rem;
+  }
+  
+  .service-logo {
+    font-size: 1.3rem;
+  }
+}

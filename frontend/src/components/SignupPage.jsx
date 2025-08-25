@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './LoginPage.css';
+import './SignupPage.css';
 import { useAppState } from './AppStateContext';
 
-function LoginPage() {
+function SignupPage() {
   const navigate = useNavigate();
   const { actions } = useAppState();
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
-    rememberMe: false
+    confirmPassword: '',
+    agreeToTerms: false
   });
 
   const handleInputChange = (e) => {
@@ -22,21 +24,39 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 로그인 로직 구현
-    console.log('Login attempt:', formData);
-    // 임시: 로그인 성공 가정 후 다음 단계로 이동
-    actions.login({ email: formData.email });
+    // 회원가입 로직 구현
+    console.log('Signup attempt:', formData);
+    // 임시: 회원가입 성공 가정 후 다음 단계로 이동
+    actions.login({ email: formData.email, name: formData.name });
     navigate('/category');
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <h1 className="logo">AI 홍보 서비스</h1>
-        <h2 className="login-title">계정에 로그인</h2>
-        <p className="login-subtitle">또는 <Link to="/signup" className="signup-link">새 계정 만들기</Link></p>
+    <div className="signup-page">
+      <div className="signup-container">
+        <div className="header-section">
+          <h1 className="service-logo">
+            <span className="ai-text">AI</span> 홍보 서비스
+          </h1>
+          <h2 className="signup-title">새 계정 만들기</h2>
+          <p className="login-link-text">
+            이미 계정이 있으신가요? <Link to="/login" className="login-link">로그인하기</Link>
+          </p>
+        </div>
         
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>이름</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="이름을 입력하세요"
+              required
+            />
+          </div>
+
           <div className="form-group">
             <label>이메일 주소</label>
             <input
@@ -61,21 +81,34 @@ function LoginPage() {
             />
           </div>
 
-          <div className="form-check">
+          <div className="form-group">
+            <label>비밀번호 확인</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              placeholder="비밀번호를 다시 입력하세요"
+              required
+            />
+          </div>
+
+          <div className="terms-checkbox">
             <label className="checkbox-label">
               <input
                 type="checkbox"
-                name="rememberMe"
-                checked={formData.rememberMe}
+                name="agreeToTerms"
+                checked={formData.agreeToTerms}
                 onChange={handleInputChange}
+                required
               />
-              로그인 상태 유지
+              <span className="checkbox-custom"></span>
+              서비스 이용약관 및 개인정보처리방침에 동의합니다
             </label>
-            <button type="button" className="forgot-password" onClick={() => alert('비밀번호 찾기 기능은 준비 중입니다.')}>비밀번호를 잊으셨나요?</button>
           </div>
 
-          <button type="submit" className="login-button">
-            로그인
+          <button type="submit" className="signup-button">
+            계정 만들기
           </button>
         </form>
 
@@ -83,7 +116,7 @@ function LoginPage() {
           <span>또는</span>
         </div>
 
-        <div className="social-login">
+        <div className="social-signup">
           <button className="social-button google" onClick={() => { actions.login({ provider: 'google' }); navigate('/category'); }}>
             <img src="/google-icon.png" alt="Google" />
             구글
@@ -98,4 +131,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignupPage;

@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Payment.css'
+import SummaryBar from './SummaryBar'
+import { useAppState } from './AppStateContext'
 
 function Payment() {
   const navigate = useNavigate()
+  const { state, actions } = useAppState()
   const [paymentMethod, setPaymentMethod] = useState('')
   const [freeUses, setFreeUses] = useState(2)
 
@@ -17,8 +20,24 @@ function Payment() {
     }
   }
 
+  const handleBack = () => {
+    navigate('/preview')
+  }
+
   return (
     <div className="payment-page">
+      <SummaryBar
+        category={state.category}
+        companyName={state.basicInfo?.companyName}
+        snsChannels={state.sns?.channels}
+        promptText={state.prompt?.content}
+        language={state.language}
+        onClickCategory={() => navigate('/basic-info')}
+        onClickBasic={() => navigate('/basic-info')}
+        onClickSns={() => navigate('/sns-channel')}
+        onClickPrompt={() => navigate('/content-prompt')}
+        onClickLanguage={() => navigate('/preview')}
+      />
       <div className="payment-container">
         <div className="left-section">
           <h1 className="main-title">결제</h1>
@@ -73,6 +92,13 @@ function Payment() {
               disabled={!paymentMethod}
             >
               결제
+            </button>
+            <button 
+              className="payment-submit-btn"
+              onClick={handleBack}
+              style={{ marginTop: '12px', backgroundColor: '#e0e0e0', color: '#333' }}
+            >
+              이전으로
             </button>
           </div>
         </div>

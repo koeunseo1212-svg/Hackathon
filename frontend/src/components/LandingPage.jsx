@@ -25,7 +25,7 @@ function LandingPage() {
         </div>
         <div className="nav-auth">
           <button className="login-btn" onClick={() => navigate('/login')}>로그인</button>
-          <button className="signup-btn">회원가입</button>
+          <button className="signup-btn" onClick={() => navigate('/signup')}>회원가입</button>
         </div>
       </nav>
 

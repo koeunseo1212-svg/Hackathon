@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './BasicInfoForm.css'
+import { useAppState } from './AppStateContext'
+import SummaryBar from './SummaryBar'
 
 function BasicInfoForm() {
   const navigate = useNavigate()
+  const { state, actions } = useAppState()
   const [formData, setFormData] = useState({
     companyName: '',      // 상호명
     businessType: '',     // 업종
@@ -13,6 +16,12 @@ function BasicInfoForm() {
     businessHours: '',   // 운영시간
     introduction: ''     // 가게 소개
   })
+
+  useEffect(() => {
+    if (state.basicInfo) {
+      setFormData(prev => ({ ...prev, ...state.basicInfo }))
+    }
+  }, [state.basicInfo])
 
   // 필수 필드 유효성 검사
   const validateField = (name, value) => {
@@ -61,6 +70,7 @@ function BasicInfoForm() {
       .every(field => validateField(field, formData[field]));
 
     if (isValid) {
+      actions.setBasicInfo(formData)
       navigate('/sns-channel');
     } else {
       // 모든 필드의 유효성 상태 업데이트
@@ -92,6 +102,15 @@ function BasicInfoForm() {
           </div>
         </div>
       </div>
+
+      <SummaryBar
+        category={state.category}
+        companyName={undefined}
+        snsChannels={undefined}
+        promptText={undefined}
+        language={undefined}
+        onClickCategory={() => navigate('/category')}
+      />
 
       <div className="main-content">
         <h1 className="section-title">가게 정보를 입력해주세요</h1>

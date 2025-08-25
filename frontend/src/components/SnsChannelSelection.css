@@ -1,128 +1,308 @@
 .sns-channel-page {
   min-height: 100vh;
-  width: 100%;
-  background-color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #f8f9ff;
   padding: 2rem;
   display: flex;
+  flex-direction: column;
+}
+
+/* 진행 단계 헤더 */
+.progress-header {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
 }
 
-.channel-container {
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.progress-step.completed .step-icon {
+  background-color: #10b981;
+  color: white;
+}
+
+.progress-step.active .step-icon {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.progress-step:not(.completed):not(.active) .step-icon {
+  background-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.step-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.progress-line {
+  width: 80px;
+  height: 2px;
+  background-color: #e5e7eb;
+  margin: 0 1rem;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+  flex: 1;
   max-width: 1200px;
-  width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-  min-height: 80vh;
+  width: 100%;
+  padding: 3rem 2rem;
 }
 
-.left-section {
-  padding-top: 4rem;
+.content-header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .main-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #000;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
   margin-bottom: 1rem;
 }
 
 .description {
-  font-size: 1.2rem;
-  color: #666;
+  font-size: 1.125rem;
+  color: #6b7280;
   line-height: 1.6;
 }
 
-.right-section {
-  padding-top: 2rem;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #000;
-  margin-bottom: 2rem;
-}
-
-.channel-grid {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+/* SNS 그리드 */
+.sns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
   margin-bottom: 3rem;
-  justify-content: center;
 }
 
-.channel-btn {
-  padding: 1.2rem 1.5rem;
-  border: 2px solid #e0e0e0;
+.sns-card {
+  background: white;
+  border: 2px solid #e5e7eb;
   border-radius: 12px;
-  background-color: white;
-  color: #000;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: center;
-  min-width: 200px;
-  max-width: 230px;
+  position: relative;
+  overflow: hidden;
 }
 
-.channel-btn:hover {
-  border-color: var(--channel-color);
+.sns-card:hover {
+  border-color: #3b82f6;
   transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.channel-btn.selected {
-  border-color: var(--channel-color);
-  background-color: var(--channel-color);
-  color: white;
+.sns-card.selected {
+  border-color: #3b82f6;
+  background-color: #f0f9ff;
+}
+
+.sns-card.selected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 30px 30px 0;
+  border-color: transparent #3b82f6 transparent transparent;
+}
+
+.sns-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sns-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sns-description {
+  color: #6b7280;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.sns-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.check-icon {
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* 추가 옵션 */
+.additional-options {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e5e7eb;
+}
+
+.options-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.option-item:hover {
+  background-color: #f9fafb;
+}
+
+.option-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+}
+
+.option-text {
+  font-size: 1rem;
+  color: #374151;
+}
+
+/* 네비게이션 버튼 */
+.navigation-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.prev-btn {
+  padding: 10px 18px;
+  background: #fff;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  color: #344054;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 120px;
+  transition: all 0.2s ease;
+}
+
+.prev-btn:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
 }
 
 .next-btn {
-  width: 100%;
-  padding: 1rem 2rem;
-  background-color: #000;
-  color: white;
+  padding: 10px 18px;
+  background: #7f56d9;
   border: none;
   border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  flex: 1; 
 }
 
 .next-btn:hover:not(:disabled) {
-  background-color: #333;
+  background: #6941c6;
   transform: translateY(-2px);
 }
 
 .next-btn:disabled {
-  background-color: #ccc;
+  background: #e9d7fe;
   cursor: not-allowed;
 }
 
+/* 반응형 디자인 */
 @media (max-width: 768px) {
-  .channel-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .sns-channel-page {
+    padding: 1rem;
   }
-
-  .main-title {
-    font-size: 1.8rem;
-  }
-
-  .channel-grid {
+  
+  .progress-header {
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
-
-  .channel-btn {
-    padding: 1rem 1.2rem;
-    font-size: 0.9rem;
-    min-width: 200px;
-    max-width: 230px;
+  
+  .progress-line {
+    width: 2px;
+    height: 40px;
+    margin: 0;
+  }
+  
+  .main-title {
+    font-size: 1.875rem;
+  }
+  
+  .sns-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .sns-card {
+    padding: 1rem;
+  }
+  
+  .navigation-footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-btn {
+    width: 100%;
   }
 }

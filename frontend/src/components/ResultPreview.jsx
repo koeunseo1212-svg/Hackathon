@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ResultPreview.css'
+import SummaryBar from './SummaryBar'
+import { useAppState } from './AppStateContext'
+import GeneratedContent from './GeneratedContent'
 
 function ResultPreview() {
   const navigate = useNavigate()
-  const [selectedLanguage, setSelectedLanguage] = useState('')
-  const [freeRegenerations, setFreeRegenerations] = useState(1)
+  const { state, actions } = useAppState()
+  const [selectedLanguage, setSelectedLanguage] = useState(state.language || '')
+  const [freeRegenerations, setFreeRegenerations] = useState(state.quotas?.freeRegenerations ?? 1)
 
   const languages = ['영어', '중국어', '일본어']
 
@@ -16,8 +20,7 @@ function ResultPreview() {
   const handleRegenerate = () => {
     if (freeRegenerations > 0) {
       setFreeRegenerations(prev => prev - 1)
-      // 재생성 로직 구현
-      console.log('콘텐츠 재생성')
+      actions.useRegeneration()
     }
   }
 
@@ -26,11 +29,24 @@ function ResultPreview() {
   }
 
   const handlePayment = () => {
+    actions.setLanguage(selectedLanguage)
     navigate('/payment')
   }
 
   return (
     <div className="result-preview-page">
+      <SummaryBar
+        category={state.category}
+        companyName={state.basicInfo?.companyName}
+        snsChannels={state.sns?.channels}
+        promptText={state.prompt?.content}
+        language={state.language}
+        onClickCategory={() => navigate('/basic-info')}
+        onClickBasic={() => navigate('/basic-info')}
+        onClickSns={() => navigate('/sns-channel')}
+        onClickPrompt={() => navigate('/content-prompt')}
+        onClickLanguage={() => {}}
+      />
       <div className="preview-container">
         <div className="left-section">
           <h1 className="main-title">결과 미리보기</h1>
@@ -74,7 +90,7 @@ function ResultPreview() {
                   <span>이미지 미리보기</span>
                 </div>
                 <div className="text-content">
-                  <p>캡션 + 해시태그</p>
+                  <GeneratedContent type="instagram" state={state} language={selectedLanguage} />
                 </div>
               </div>
             </div>
@@ -87,7 +103,7 @@ function ResultPreview() {
                   <span>본문 미리보기</span>
                 </div>
                 <div className="text-content">
-                  <button className="download-copy-btn">다운로드/복사 버튼</button>
+                  <GeneratedContent type="naver-blog" state={state} language={selectedLanguage} />
                 </div>
               </div>
             </div>
