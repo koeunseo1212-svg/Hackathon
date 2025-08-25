@@ -78,32 +78,25 @@ function CategorySelection() {
 
   return (
     <div className="category-page">
-      <div className="page-header">
-        <div className="header-content">
-          <div className="logo">AI 홍보 서비스</div>
-          <div className="progress-text">
-            <span>1/4단계</span>
-            <button className="dashboard-btn">대시보드로 돌아가기</button>
-          </div>
+      <div className="progress-header">
+        <div className="progress-step active">
+          <div className="step-icon">1</div>
+          <span className="step-label">카테고리 설정</span>
         </div>
-
-        <div className="progress-steps">
-          <div className="step active">
-            <span className="step-number">1</span>
-            카테고리 설정
-          </div>
-          <div className="step">
-            <span className="step-number">2</span>
-            가게 정보
-          </div>
-          <div className="step">
-            <span className="step-number">3</span>
-            SNS 선택
-          </div>
-          <div className="step">
-            <span className="step-number">4</span>
-            콘텐츠 생성
-          </div>
+        <div className="progress-line"></div>
+        <div className="progress-step">
+          <div className="step-icon">2</div>
+          <span className="step-label">가게 정보</span>
+        </div>
+        <div className="progress-line"></div>
+        <div className="progress-step">
+          <div className="step-icon">3</div>
+          <span className="step-label">SNS 선택</span>
+        </div>
+        <div className="progress-line"></div>
+        <div className="progress-step">
+          <div className="step-icon">4</div>
+          <span className="step-label">콘텐츠 생성</span>
         </div>
       </div>
 

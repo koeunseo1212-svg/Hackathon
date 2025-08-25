@@ -7,54 +7,59 @@
   flex-direction: column;
 }
 
-.header {
-  width: 100%;
-  padding: 1.5rem 2rem;
+/* 진행 단계 헤더 */
+.progress-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #fff;
-  border-bottom: 1px solid #eaecf0;
+  justify-content: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
 }
 
-.header-left {
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.progress-step.completed .step-icon {
+  background-color: #10b981;
+  color: white;
 }
 
-.back-button {
-  padding: 8px 14px;
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
-  background: #fff;
-  color: #344054;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.progress-step.active .step-icon {
+  background-color: #3b82f6;
+  color: white;
 }
 
-.progress-steps {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+.progress-step:not(.completed):not(.active) .step-icon {
+  background-color: #e5e7eb;
+  color: #6b7280;
 }
 
-.step {
-  font-size: 14px;
-  color: #344054;
+.step-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
 }
 
-.step.active {
-  color: #6941c6;
+.progress-line {
+  width: 80px;
+  height: 2px;
+  background-color: #e5e7eb;
+  margin: 0 1rem;
 }
 
 .main-content {

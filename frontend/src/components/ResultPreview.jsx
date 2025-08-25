@@ -14,8 +14,8 @@ function ResultPreview() {
   const languages = ['영어', '중국어', '일본어']
 
   const handleLanguageSelect = (language) => {
-    setSelectedLanguage(language)
-  }
+    setSelectedLanguage(prev => (prev === language ? '' : language));
+  };
 
   const handleRegenerate = () => {
     if (freeRegenerations > 0) {
@@ -54,16 +54,23 @@ function ResultPreview() {
           <div className="language-section">
             <p className="language-question">다국어 버전이 필요하신가요? (선택)</p>
             <div className="language-buttons">
-              {languages.map(language => (
-                <button
-                  key={language}
-                  className={`language-btn ${selectedLanguage === language ? 'selected' : ''}`}
-                  onClick={() => handleLanguageSelect(language)}
-                >
-                  {language}
-                </button>
-              ))}
-            </div>
+  <button
+    className={`language-btn ${selectedLanguage === '' ? 'selected' : ''}`}
+    onClick={() => setSelectedLanguage('')}
+  >
+    선택 안함
+  </button>
+
+  {languages.map(language => (
+    <button
+      key={language}
+      className={`language-btn ${selectedLanguage === language ? 'selected' : ''}`}
+      onClick={() => handleLanguageSelect(language)}
+    >
+      {language}
+    </button>
+  ))}
+</div>
           </div>
 
           <div className="action-buttons">
