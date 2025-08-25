@@ -1,0 +1,9 @@
+# Google Gemini API 설정
+GEMINI_API_KEY=AIzaSyC7jsU8Mps-HlfvzAIil8-mBxJxrMa6uiU
+
+# 서버 설정
+PORT=5000
+NODE_ENV=development
+
+# 보안 설정
+CORS_ORIGIN=http://localhost:3000
